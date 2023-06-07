@@ -5,6 +5,7 @@ const Dashboard = () => {
     const item =
         <>
             <Link to='/dashboard/allusers'><li><a>All User</a></li></Link>
+            <Link to='/dashboard/selectedClass'><li><a>Selected class</a></li></Link>
             <li><a>Sidebar Item 2</a></li>
             <li><a>Sidebar Item 2</a></li>
             <li><a>Sidebar Item 2</a></li>
