@@ -3,7 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, on
 import app from "../firebase/firebase.config";
 
 const auth = getAuth(app)
-const AuthContext = createContext(null)
+export const AuthContext = createContext(null)
 const AuthProvider = ({ children }) => {
     const googleProvider = new GoogleAuthProvider();
     const [user, setUser] = useState(null)

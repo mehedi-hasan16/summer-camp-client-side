@@ -1,42 +1,45 @@
 import { useForm } from 'react-hook-form';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 const Signup = () => {
     const { register, getValues, handleSubmit, reset, formState: { errors } } = useForm();
-
-
+    const { createUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
+    
     const onSubmit = data => {
-
         console.log(data);
-        // createUser(data.email, data.password)
-        // .then(result=>{
-        //     const loggedUser = result.user;
-        //     console.log(loggedUser);
-        //     updateUserProfile(data.name, data.photo)
-        //     .then(()=>{
-        //         const saveUser= {name: data.name, email: data.email}
-        //         fetch('http://localhost:5000/users',{
-        //             method:'post',
-        //             headers:{
-        //                 'content-type': 'application/json'
-        //             },
-        //             body: JSON.stringify(saveUser)
-        //         })
-        //         .then(res=>res.json())
-        //         .then(data=>{
-        //             if(data.insertedId){
-        //                 reset();
-        //             }
-        //         })
-        //         Swal.fire({
-        //             position: 'top-end',
-        //             icon: 'success',
-        //             title: 'Account created succcessfully',
-        //             showConfirmButton: false,
-        //             timer: 1500
-        //           })
-        //           navigate('/');
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        const saveUser = { name: data.name, email: data.email }
+                        fetch('http://localhost:5000/users', {
+                            method: 'post',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify(saveUser)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    reset();
+                                }
+                            })
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Account created succcessfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        navigate('/');
 
-        //     })
-        // })
+                    })
+            })
     };
 
     return (
@@ -71,7 +74,7 @@ const Signup = () => {
                         required: true, pattern: /^(?=.*[A-Z])(?=.*[@#$!%^&*()_+])[A-Za-z\d@#$!%^&*()_+]{6,}$/i
                     })} placeholder="Password" className="input input-bordered" />
                     {errors.password?.type === 'pattern' && <p className="text-red-500">More than 6 digit with capital latter & special character</p>}
-                    
+
                 </div>
                 <div className="form-control">
                     <label className="label">
