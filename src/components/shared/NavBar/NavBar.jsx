@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
 import useAuth from '../../../hooks/useAuth';
+import useCart from '../../../hooks/useCart';
 const NavBar = () => {
     const { user, LogOut } = useAuth();
     console.log(user);
+    const [cart] = useCart();
+    console.log(cart);
     const navItem =
         <>
             <Link to='/'><li><a>Home</a></li></Link>
@@ -18,7 +21,7 @@ const NavBar = () => {
                     </>
                     : ''
             }
-
+            <li><a>{cart.length || 0}</a></li>
         </>
 
 
