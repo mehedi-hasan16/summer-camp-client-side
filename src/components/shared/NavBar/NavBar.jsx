@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
 const NavBar = () => {
     const navItem =
         <>
             <li><a>Home</a></li>
-            <li><a>Instructors</a></li>
+            <Link to='/instructors'><li><a>Instructors</a></li></Link>
             <li><a>Classes</a></li>
             <li><a>Dashboard</a></li>
             <li><a>Login</a></li>
