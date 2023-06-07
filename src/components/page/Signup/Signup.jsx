@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Signup = () => {
     const { register, getValues, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
-    
+
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
@@ -43,7 +43,7 @@ const Signup = () => {
     };
 
     return (
-        <div>
+        <div className='border-2 border-solid md:w-1/3 mx-auto p-4'>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                 <div className="form-control">
                     <label className="label">
@@ -89,8 +89,9 @@ const Signup = () => {
                     {errors.cpassword && <span className="text-red-500">{errors.cpassword.message}</span>}
                     {errors.password?.type === 'minLength' && <p className="text-red-500">Password must be 6 cherecter</p>}
                 </div>
-                <div className="form-control mt-6">
+                <div className="form-control mt-4">
                     <input className="btn btn-primary" type="submit" value="Sign Up" />
+                    <div className='text-center mt-3'>Already have an account? <Link to='/login'>Login</Link></div>
                 </div>
             </form>
         </div>

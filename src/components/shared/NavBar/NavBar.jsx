@@ -1,13 +1,15 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
+import useAuth from '../../../hooks/useAuth';
 const NavBar = () => {
+    const { user, LogOut } = useAuth(); 
     const navItem =
         <>
             <li><a>Home</a></li>
             <Link to='/instructors'><li><a>Instructors</a></li></Link>
             <li><a>Classes</a></li>
-            <li><a>Dashboard</a></li>
-            <li><a>Login</a></li>
+            <Link to='/dashboard'><li><a>Dashboard</a></li></Link>
+            <Link to='/login'><li><a>Login</a></li></Link>
         </>
 
     return (
