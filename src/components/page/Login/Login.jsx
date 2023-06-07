@@ -1,13 +1,31 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Login = () => {
+    const {signIn} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const formPage = location.state?.form?.pathname|| '/'
     const [showPass, setShowPass] = useState(true)
     const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
-    // console.log(errors);
+    const onSubmit = data => {
+        signIn(data.email, data.password)
+            .then(result=>{
+                console.log(result.user);
+            //    sweetalert 
+                Swal.fire(
+                    'Success',
+                    'Login successfully',
+                    'success'
+                  )
+                  navigate(formPage, {replace: true})
+            })
 
+    };
+   
     return (
         <div className='min-h-screen'>
             <div className='border-2 border-solid md:w-1/4 mx-auto p-4'>
