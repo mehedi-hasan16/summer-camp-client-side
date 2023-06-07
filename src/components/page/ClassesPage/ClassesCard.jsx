@@ -29,7 +29,15 @@ const ClassesCard = ({ item }) => {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Your work has been saved',
+                            title: 'Added to cart',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    } else if( data.message){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title:'Already added before',
                             showConfirmButton: false,
                             timer: 1500
                         })
