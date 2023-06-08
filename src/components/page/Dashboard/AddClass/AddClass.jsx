@@ -2,11 +2,29 @@ import { useForm } from "react-hook-form";
 import SectionName from "../../../SectionName/SectionName";
 import useAuth from "../../../../hooks/useAuth";
 
+const img_hosting_token = import.meta.env.VITE_IMAEGE_UPLOAD_TOKEN;
+console.log(img_hosting_token);
 const AddClass = () => {
     const {user} = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const img_hosting_url= `https://api.imgbb.com/1/upload?key=${img_hosting_token}`
     const onSubmit = data =>{
         console.log(data);
+        const formData = new FormData()
+        formData.append('image', data.photo[0])
+        fetch(img_hosting_url,{
+            method:'post',
+            body:formData
+        })
+        .then(res=>res.json())
+        .then(imageResponse=>{
+            if(imageResponse.success){
+                const igmURL= imageResponse.data.display_url;
+                const {className, instructor, email, seats, price} = data;
+                const addItem = {className, instructor, email, seats:parseInt(seats), price:parseInt(price), image:igmURL, status:'pending'}
+                console.log(addItem);
+            }
+        })
     }
     return (
         <div className="w-full">
@@ -29,22 +47,22 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text">Instructor Name</span>
                     </label>
-                    <input type="text" {...register("instructorName", { required: true })} placeholder="Instructor Name" className="input input-bordered" defaultValue={user.displayName} readOnly/>
+                    <input type="text" {...register("instructor", { required: true })} placeholder="Instructor Name" className="input input-bordered" defaultValue={user?.displayName} readOnly/>
                    
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Instructor Email</span>
                     </label>
-                    <input type="email" {...register("instructorEmail", {
-                        required: true})} placeholder="Instructor Email" className="input input-bordered" defaultValue={user.email} readOnly />
+                    <input type="email" {...register("email", {
+                        required: true})} placeholder="Instructor Email" className="input input-bordered" defaultValue={user?.email} readOnly />
 
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Available seats</span>
                     </label>
-                    <input type="number" {...register("availableSeats", {
+                    <input type="number" {...register("seats", {
                         required: true, minLength: 0, maxLength: 50 })} 
                         placeholder="Seats" className="input input-bordered" />
                 </div>
