@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import SectionName from "../../../SectionName/SectionName";
 import useAuth from "../../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const img_hosting_token = import.meta.env.VITE_IMAEGE_UPLOAD_TOKEN;
 console.log(img_hosting_token);
@@ -21,8 +22,27 @@ const AddClass = () => {
             if(imageResponse.success){
                 const igmURL= imageResponse.data.display_url;
                 const {className, instructor, email, seats, price} = data;
-                const addItem = {className, instructor, email, seats:parseInt(seats), price:parseInt(price), image:igmURL, status:'pending'}
+                const addItem = {className, instructor, email, seats:parseInt(seats), price:parseInt(price), image:igmURL, status:'pending', enrolled: parseInt(0)}
                 console.log(addItem);
+                fetch('http://localhost:5000/classes',{
+                    method:'post',
+                    headers:{
+                        'content-type': 'application/json'
+                    },
+                    body:JSON.stringify(addItem)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    if(data.insertedId){
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Class added successfully!',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                    };
+                })
             }
         })
     }

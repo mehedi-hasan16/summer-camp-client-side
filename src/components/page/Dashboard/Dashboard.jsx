@@ -7,9 +7,9 @@ const Dashboard = () => {
             <Link to='/dashboard/allusers'><li><a>All User</a></li></Link>
             <Link to='/dashboard/selectedClass'><li><a>Selected class</a></li></Link>
             <Link to='/dashboard/addclass'><li><a>Add class</a></li></Link>
-            <li><a>Sidebar Item 2</a></li>
-            <li><a>Sidebar Item 2</a></li>
-            <li><a>Sidebar Item 2</a></li>
+            <Link to='/dashboard/instructorClass'><li><a>Instructor my Class</a></li></Link>
+            <Link to='/dashboard/manageClass'><li><a>admin Manage Class</a></li></Link>
+          
         </>
     return (
         <div>
