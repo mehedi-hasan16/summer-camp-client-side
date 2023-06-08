@@ -35,8 +35,8 @@ const InstructorClass = () => {
                                     <th>{idx + 1}</th>
                                     <td>{item.className}</td>
                                     <td>{item.enrolled}</td>
-                                    <td>{item.feedback ? item.feedback : 'Admin will review and feedback'}</td>
-                                    <td> <span className="bg-amber-400 p-1 rounded-lg font-bold"> {item.status}</span></td>
+                                    <td>{item.comment ? item.comment : 'Admin will review and feedback'}</td>
+                                    <td><span className="badge badge-outline">{item.status}</span></td>
                                     <td><button className="btn btn-error btn-xs">update</button></td>
                                 </tr>)
 

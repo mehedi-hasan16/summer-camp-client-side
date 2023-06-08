@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import SectionName from "../../../SectionName/SectionName";
+import Swal from "sweetalert2";
 
 const ManageClass = () => {
     const [data, setData] = useState([])
@@ -13,6 +14,64 @@ const ManageClass = () => {
 
     const handleDenied = item =>{
         console.log(item);
+        Swal.fire({
+            title: 'Write comment why denied?',
+            input: 'text',
+            inputAttributes: {
+              autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Confirm',
+            showLoaderOnConfirm: true,
+            preConfirm: (comment) => {
+              fetch(`http://localhost:5000/classes/${item._id}`,{
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              status: 'denied',
+              comment: comment
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.modifiedCount > 0){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'succesfully updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            })
+            }
+          })
+    }
+    
+    const handleApprove = item=>{
+        fetch(`http://localhost:5000/classes/${item._id}`,{
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              status: 'approve',
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if(data.modifiedCount > 0){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Approved succesfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }
+            })
     }
     return (
         <div className="w-full ms-10">
@@ -59,7 +118,7 @@ const ManageClass = () => {
                                 <td>{item.status}</td>
                                 <td>
                                     <div>
-                                        <button className="btn btn-xs btn-success">Approve</button>
+                                        <button onClick={()=>handleApprove(item)} className="btn btn-xs btn-success">Approve</button>
                                     </div>
                                     <button onClick={()=>handleDenied(item)} className="btn btn-xs btn-error mt-2">Denied</button>
                                     <div>
