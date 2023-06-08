@@ -12,6 +12,7 @@ import SelectedClasses from "../components/page/Dashboard/SelectedClasses/Select
 import AddClass from "../components/page/Dashboard/AddClass/AddClass";
 import InstructorClass from "../components/page/Dashboard/InstructorClass/InstructorClass";
 import ManageClass from "../components/page/Dashboard/ManageClass/ManageClass";
+import EnrolledClasses from "../components/page/Dashboard/EnrolledClasses/EnrolledClasses";
 
 
 const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
                     {
                         path: 'manageClass',
                         element: <ManageClass></ManageClass>
+                    },
+                    {
+                        path: 'enrolledClasses',
+                        element: <EnrolledClasses></EnrolledClasses>
                     }
                 ]
             }

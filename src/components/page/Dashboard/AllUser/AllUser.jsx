@@ -51,7 +51,7 @@ const AllUser = () => {
             .then(data => {
                 if (data.modifiedCount) {
                     refetch();
-                    Swal.fire(`${user.name} is an admin now`)
+                    Swal.fire(`${user.name} status updated`)
                 }
             })
     }

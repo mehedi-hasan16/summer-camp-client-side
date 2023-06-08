@@ -5,6 +5,7 @@ import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 
 const Login = () => {
+    const[error, setError]= useState('')
     const {signIn} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -12,6 +13,7 @@ const Login = () => {
     const [showPass, setShowPass] = useState(true)
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
+        setError('');
         signIn(data.email, data.password)
             .then(result=>{
                 console.log(result.user);
@@ -22,6 +24,8 @@ const Login = () => {
                     'success'
                   )
                   navigate(formPage, {replace: true})
+            }).catch(error=>{
+                setError(error.message)
             })
 
     };
@@ -56,6 +60,7 @@ const Login = () => {
 
                 </form>
                 <div className='text-center mt-3'>New in website? <Link to='/signup'>Register</Link></div>
+                <span className='text-red-500 text-center'>{error}</span>
             </div>
         </div>
     );

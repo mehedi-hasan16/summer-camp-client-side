@@ -28,18 +28,22 @@ const Signup = () => {
                             .then(data => {
                                 if (data.insertedId) {
                                     reset();
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Account created succcessfully',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
                                 }
                             })
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Account created succcessfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
+                       
                         navigate('/');
 
                     })
+            }).catch(error=>{
+                Swal.fire(`${error.message}`)
+                // console.log(error.message);
             })
     };
 

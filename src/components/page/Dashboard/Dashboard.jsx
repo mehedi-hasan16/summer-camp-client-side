@@ -1,15 +1,35 @@
 import { Link, Outlet } from "react-router-dom";
+import useUsers from "../../../hooks/useUsers";
 
 
 const Dashboard = () => {
+
+    const [isUserRole, refetch] = useUsers();
+    console.log(isUserRole);
     const item =
-        <>
-            <Link to='/dashboard/allusers'><li><a>All User</a></li></Link>
-            <Link to='/dashboard/selectedClass'><li><a>Selected class</a></li></Link>
-            <Link to='/dashboard/addclass'><li><a>Add class</a></li></Link>
-            <Link to='/dashboard/instructorClass'><li><a>Instructor my Class</a></li></Link>
+        <>{
+            isUserRole?.role === 'admin'
+                ? (<>
+                    <Link to='/dashboard/allusers'><li><a> admin All User</a></li></Link>
+                    <Link to='/dashboard/manageClass'><li><a>admin Manage Class</a></li></Link>
+                </>)
+                : isUserRole?.role === 'instructor'
+                    ? (<>
+                        <Link to='/dashboard/addclass'><li><a>instructor Add class</a></li></Link>
+                        <Link to='/dashboard/instructorClass'><li><a>Instructor my Class</a></li></Link>
+                    </>)
+                    :
+                    (<>
+                        <Link to='/dashboard/selectedClass'><li><a>student Selected class</a></li></Link>
+                        <Link to='/dashboard/enrolledClasses'><li><a>student Enrolled Classes</a></li></Link>
+                    </>)
+        }
+            {/* <Link to='/dashboard/allusers'><li><a> admin All User</a></li></Link>
             <Link to='/dashboard/manageClass'><li><a>admin Manage Class</a></li></Link>
-          
+            <Link to='/dashboard/selectedClass'><li><a>student Selected class</a></li></Link>
+            <Link to='/dashboard/enrolledClasses'><li><a>student Enrolled Classes</a></li></Link>
+            <Link to='/dashboard/addclass'><li><a>instructor Add class</a></li></Link>
+            <Link to='/dashboard/instructorClass'><li><a>Instructor my Class</a></li></Link> */}
         </>
     return (
         <div>
