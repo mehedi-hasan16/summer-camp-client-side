@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useCart from "../../../../hooks/useCart";
 import SectionName from "../../../SectionName/SectionName";
+import { Link } from "react-router-dom";
 
 const SelectedClasses = () => {
     const [cart, refetch] = useCart();
@@ -29,7 +30,7 @@ const SelectedClasses = () => {
             <div className="flex justify-around my-10">
             <div className="font-bold text-xl">Selected Total classes: {cart.length}</div>
             <div className="font-bold text-xl">Total Price: ${totalPrice}</div>
-            <button className="btn  btn-outline btn-primary btn-sm">PayNow</button>
+            <Link to='/dashboard/payment'><button className="btn  btn-outline btn-primary btn-sm">PayNow</button></Link>
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
