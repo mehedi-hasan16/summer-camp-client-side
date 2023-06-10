@@ -89,12 +89,12 @@ const CheckoutForm = ({ course, price }) => {
         transactionId: paymentIntent.id,
         price,
         date: new Date(),
-        items: course,
+        item: course,
       }
       axiosSecure.post('/payments', payment)
         .then(res => {
           console.log(res.data);
-          if (res.data.result.insertedId) {
+          if (res.data.insertResult.insertedId) {
             //saved to the database 
           }
         })
