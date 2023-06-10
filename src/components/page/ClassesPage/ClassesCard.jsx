@@ -73,7 +73,7 @@ const ClassesCard = ({ item }) => {
                         <div>Price: ${price}</div>
                     </div>
                     <div className="card-actions">
-                        <button onClick={() => handleAddCart(item)} className="btn btn-primary">Enroll now</button>
+                        <button onClick={() => handleAddCart(item)} disabled={seats === 0 ? true : false} className="btn btn-primary">Enroll now</button>
                     </div>
                 </div>
             </div>
