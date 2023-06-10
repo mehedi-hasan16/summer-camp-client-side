@@ -29,8 +29,7 @@ const SelectedClasses = () => {
             <SectionName title='Selected Classes'></SectionName>
             <div className="flex justify-around my-10">
             <div className="font-bold text-xl">Selected Total classes: {cart.length}</div>
-            <div className="font-bold text-xl">Total Price: ${totalPrice}</div>
-            <Link to='/dashboard/payment'><button className="btn  btn-outline btn-primary btn-sm">PayNow</button></Link>
+            
             </div>
             <div className="overflow-x-auto">
                 <table className="table">
@@ -42,6 +41,7 @@ const SelectedClasses = () => {
                             <th>Class Name</th>
                             <th>Price</th>
                             <th>Action</th>
+                            <th>Purchase</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,6 +63,7 @@ const SelectedClasses = () => {
                                 <th>
                                     <button onClick={() => handleRemoveCart(item)} className="btn btn-error btn-xs">Delete</button>
                                 </th>
+                                <td><Link to={`/dashboard/payment?Id=${item._id}`}><button className="btn  btn-outline btn-primary btn-sm">PayNow</button></Link></td>
                             </tr>)
                         }
                     </tbody>
