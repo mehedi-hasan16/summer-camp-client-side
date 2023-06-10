@@ -14,6 +14,7 @@ import InstructorClass from "../components/page/Dashboard/InstructorClass/Instru
 import ManageClass from "../components/page/Dashboard/ManageClass/ManageClass";
 import EnrolledClasses from "../components/page/Dashboard/EnrolledClasses/EnrolledClasses";
 import Payment from "../components/page/Dashboard/Payment/Payment";
+import PaymentHistory from "../components/page/Dashboard/PaymentHistory/PaymentHistory";
 
 
 const router = createBrowserRouter([
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
                     {
                         path: 'payment',
                         element: <Payment></Payment>
+                    },
+                    {
+                        path: 'paymentHistory',
+                        element: <PaymentHistory></PaymentHistory>
                     }
                 ]
             }

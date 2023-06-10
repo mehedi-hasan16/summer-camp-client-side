@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import SectionName from "../../../SectionName/SectionName";
+import moment from "moment/moment";
 
-const EnrolledClasses = () => {
+
+const PaymentHistory = () => {
     const { user, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure();
 
@@ -15,19 +17,19 @@ const EnrolledClasses = () => {
             return res.data;
         }
     })
-
     return (
         <div className="w-full">
-            <SectionName title='Enrolled Classes'></SectionName>
+            <SectionName title='Payment History'></SectionName>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Image</th>
                             <th>Class Name</th>
-                            <th>Instructor</th>
+                            <th>Email</th>
+                            <th>Transaction Id</th>
+                            <th>Date</th>
                             <th>Price</th>
 
                         </tr>
@@ -37,17 +39,10 @@ const EnrolledClasses = () => {
                         {
                             data.map((item, idx) => <tr key={item._id}>
                                 <td>{idx + 1}</td>
-                                <td>
-                                    <div className="flex items-center space-x-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
-                                                <img src={item.item.image} alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td className="font-bold">{item.item.className}</td>
-                                <td className="font-bold">{item.item.instructor}</td>
+                                <td>{item.item.className}</td>
+                                <td>{item.item.email}</td>
+                                <td>{item.transactionId}</td>
+                                <td> {moment(item.date).format('l')}</td>
                                 <td>${item.item.price}</td>
 
 
@@ -57,9 +52,9 @@ const EnrolledClasses = () => {
 
 
                 </table>
-            </div>       
-         </div>
+            </div>
+        </div>
     );
 };
 
-export default EnrolledClasses;
+export default PaymentHistory;

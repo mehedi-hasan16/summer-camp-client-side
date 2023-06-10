@@ -25,6 +25,7 @@ const Dashboard = () => {
                     (<>
                         <Link to='/dashboard/selectedClass'><li><a>student Selected class</a></li></Link>
                         <Link to='/dashboard/enrolledClasses'><li><a>student Enrolled Classes</a></li></Link>
+                        <Link to='/dashboard/paymentHistory'><li><a>student Payment History</a></li></Link>
                     </>)
         }
             {/* <Link to='/dashboard/allusers'><li><a> admin All User</a></li></Link>
