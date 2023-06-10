@@ -4,10 +4,14 @@ import { useState } from "react";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import useCart from "../../../../hooks/useCart";
+import { useNavigate } from "react-router-dom";
 
 
 
 const CheckoutForm = ({ course, price }) => {
+  const navigate = useNavigate();
+  const[,refetch]= useCart();
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useAuth();
@@ -84,6 +88,10 @@ const CheckoutForm = ({ course, price }) => {
         showConfirmButton: false,
         timer: 1500
       })
+      axiosSecure.post(`/courses/${course.courseId}/purchase`)
+      .then(res=>{
+        console.log(res.data);
+      })
       const payment = {
         email: user?.email,
         transactionId: paymentIntent.id,
@@ -96,10 +104,11 @@ const CheckoutForm = ({ course, price }) => {
           console.log(res.data);
           if (res.data.insertResult.insertedId) {
             //saved to the database 
+            refetch();
+            navigate('/dashboard/enrolledClasses');
           }
         })
     }
-
 
   }
 
