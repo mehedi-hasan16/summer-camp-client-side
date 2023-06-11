@@ -3,6 +3,7 @@ import useAuth from "../../../hooks/useAuth";
 import useCart from "../../../hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { motion } from "framer-motion"
 
 const ClassesCard = ({ item }) => {
     const [axiosSecure]= useAxiosSecure();
@@ -58,7 +59,7 @@ const ClassesCard = ({ item }) => {
 
     return (
         <div>
-            <div className={`${seats ===0?'card w-96 bg-red-500 shadow-xl':'card w-96 bg-base-100 shadow-xl'}`}>
+            <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={`${seats ===0?'card w-96 bg-red-500 shadow-xl':'card w-96 bg-base-100 shadow-xl'}`}>
                 <figure className="px-10 pt-10">
                     <img src={image} alt="Shoes" className="rounded-xl" />
                 </figure>
@@ -73,7 +74,7 @@ const ClassesCard = ({ item }) => {
                         <button onClick={() => handleAddCart(item)} disabled={seats === 0 ? true : false} className="btn btn-primary">Enroll now</button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };

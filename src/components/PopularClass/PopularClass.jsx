@@ -1,6 +1,7 @@
 import SectionName from "../SectionName/SectionName";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion"
 
 const PopularClass = () => {
     const [axiosSecure] = useAxiosSecure();
@@ -18,7 +19,8 @@ const PopularClass = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-10 px-4 md:px-0">
 
                 {
-                    data.map(item => <div key={item._id}>
+                    data.map(item => <motion.div whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }} key={item._id}>
                         <div className="card md:w-96 bg-base-100 shadow-xl">
                             <figure><img src={item.image} alt="image" /></figure>
                             <div className="card-body">
@@ -28,7 +30,7 @@ const PopularClass = () => {
                                 <p>Price: ${item.price}</p>
                             </div>
                         </div>
-                    </div>)
+                    </motion.div>)
                 }
             </div>
         </div>

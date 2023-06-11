@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import useUserRole from "../../../hooks/useUserRole";
+import { FaBook, FaBookMedical, FaBookReader, FaFileInvoiceDollar, FaPlusSquare, FaShoppingCart, FaUserAlt, FaUsers } from "react-icons/fa";
 
 
 
@@ -12,22 +13,22 @@ const Dashboard = () => {
         {
             role === 'admin'
                 ? (<>
-                    <li><Link to='/dashboard'>User info</Link></li>
-                    <li><Link to='/dashboard/allusers'> admin All User</Link></li>
-                    <li><Link to='/dashboard/manageClass'>admin Manage Class</Link></li>
+                    <li><Link to='/dashboard'><FaUserAlt></FaUserAlt> User info</Link></li>
+                    <li><Link to='/dashboard/allusers'><FaUsers></FaUsers> All User</Link></li>
+                    <li><Link to='/dashboard/manageClass'><FaBookMedical></FaBookMedical> Manage Class</Link></li>
                 </>)
                 : role === 'instructor'
                     ? (<>
-                        <li><Link to='/dashboard'>User info</Link></li>
-                        <li><Link to='/dashboard/addclass'>instructor Add class</Link></li>
-                        <li><Link to='/dashboard/instructorClass'>Instructor my Class</Link></li>
+                        <li><Link to='/dashboard'><FaUserAlt></FaUserAlt> User info</Link></li>
+                        <li><Link to='/dashboard/addclass'><FaPlusSquare></FaPlusSquare> Add class</Link></li>
+                        <li><Link to='/dashboard/instructorClass'><FaBookReader></FaBookReader> My Class</Link></li>
                     </>)
                     :
                     (<>
-                        <li><Link to='/dashboard'>User info</Link></li>
-                        <li><Link to='/dashboard/selectedClass'>student Selected class</Link></li>
-                        <li><Link to='/dashboard/enrolledClasses'>student Enrolled Classes</Link></li>
-                        <li><Link to='/dashboard/paymentHistory'>student Payment History</Link></li>
+                        <li><Link to='/dashboard'><FaUserAlt></FaUserAlt> User info</Link></li>
+                        <li><Link to='/dashboard/selectedClass'><FaShoppingCart/> Selected class</Link></li>
+                        <li><Link to='/dashboard/enrolledClasses'><FaBook/> Enrolled Classes</Link></li>
+                        <li><Link to='/dashboard/paymentHistory'><FaFileInvoiceDollar></FaFileInvoiceDollar> Payment History</Link></li>
                     </>)
         }
             {/* <Link to='/dashboard/allusers'> admin All User</Link>
