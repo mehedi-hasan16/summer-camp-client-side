@@ -3,6 +3,7 @@ import useAuth from "../../../../hooks/useAuth";
 import SectionName from "../../../SectionName/SectionName";
 import Swal from "sweetalert2";
 import useManageClass from "../../../../hooks/useManageClass";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const ManageClass = () => {
     // const [data, setData] = useState([])
@@ -13,7 +14,7 @@ const ManageClass = () => {
     //         .then(data => setData(data))
     // }, [user])
     const [classes, refetch]= useManageClass();
-
+const [axiosSecure]= useAxiosSecure();
     const handleDenied = item => {
         console.log(item);
         Swal.fire({
@@ -26,56 +27,84 @@ const ManageClass = () => {
             confirmButtonText: 'Confirm',
             showLoaderOnConfirm: true,
             preConfirm: (comment) => {
-                fetch(`http://localhost:5000/classes/${item._id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        status: 'denied',
-                        comment: comment
-                    })
+                axiosSecure.patch(`/classes/${item._id}`,{
+                    status: 'denied',
+                    comment: comment
+                }).then(data => {
+                    if (data.data.modifiedCount > 0) {
+                        refetch();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'succesfully updated',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.modifiedCount > 0) {
-                            refetch();
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'succesfully updated',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
-                    })
+                // fetch(`http://localhost:5000/classes/${item._id}`, {
+                //     method: 'PATCH',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify({
+                //         status: 'denied',
+                //         comment: comment
+                //     })
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         if (data.modifiedCount > 0) {
+                //             refetch();
+                //             Swal.fire({
+                //                 position: 'top-end',
+                //                 icon: 'success',
+                //                 title: 'succesfully updated',
+                //                 showConfirmButton: false,
+                //                 timer: 1500
+                //             })
+                //         }
+                //     })
             }
         })
     }
 
     const handleApprove = item => {
-        fetch(`http://localhost:5000/classes/${item._id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                status: 'approve',
-            })
+        axiosSecure.patch(`/classes/${item._id}`, {status: 'approve'})
+        .then(data => {
+            if (data.data.modifiedCount > 0) {
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Approved succesfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
-                    refetch();
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Approved succesfully',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            })
+        // fetch(`http://localhost:5000/classes/${item._id}`, {
+        //     method: 'PATCH',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         status: 'approve',
+        //     })
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.modifiedCount > 0) {
+        //             refetch();
+        //             Swal.fire({
+        //                 position: 'top-end',
+        //                 icon: 'success',
+        //                 title: 'Approved succesfully',
+        //                 showConfirmButton: false,
+        //                 timer: 1500
+        //             })
+        //         }
+        //     })
     }
     return (
         <div className="w-full ms-10">

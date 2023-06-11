@@ -29,7 +29,7 @@ const CheckoutForm = ({ course, price }) => {
           setClientSecret(res.data.clientSecret);
         })
     }
-  }, [])
+  }, [price, axiosSecure])
 
 
   const handleSubmit = async (event) => {
@@ -121,7 +121,7 @@ const CheckoutForm = ({ course, price }) => {
               style: {
                 base: {
                   fontSize: '16px',
-                  color: '#424770',
+                  color: '#000000',
                   '::placeholder': {
                     color: '#aab7c4',
                   },

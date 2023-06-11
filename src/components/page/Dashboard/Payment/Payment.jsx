@@ -21,11 +21,11 @@ const Payment = () => {
         <div className="w-full">
             <SectionName title='payment'></SectionName>
             <div className="flex justify-center">
-            <h3 className="text-xl font-semibold me-6">Course: {paymentCourse.className}</h3>
-            <h3 className="text-xl font-semibold">Price: ${paymentCourse.price}</h3>
+            <h3 className="text-xl font-semibold me-6">Course: {paymentCourse?.className}</h3>
+            <h3 className="text-xl font-semibold">Price: ${paymentCourse?.price}</h3>
             </div>
             <Elements stripe={stripePromise}>
-                <CheckoutForm course={paymentCourse} price={paymentCourse.price}></CheckoutForm>
+                <CheckoutForm course={paymentCourse} price={paymentCourse?.price}></CheckoutForm>
             </Elements>
         </div>
     );

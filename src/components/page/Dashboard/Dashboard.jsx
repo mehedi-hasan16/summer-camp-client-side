@@ -13,7 +13,7 @@ const Dashboard = () => {
             role === 'admin'
                 ? (<>
                     <li><Link to='/dashboard'>User info</Link></li>
-                    <li><Link to='/dashboard/allusers'> admin All User</Link></li><Link to='/dashboard/allusers'> admin All User</Link>
+                    <li><Link to='/dashboard/allusers'> admin All User</Link></li>
                     <li><Link to='/dashboard/manageClass'>admin Manage Class</Link></li>
                 </>)
                 : role === 'instructor'

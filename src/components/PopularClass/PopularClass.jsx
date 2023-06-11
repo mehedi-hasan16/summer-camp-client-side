@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
 import SectionName from "../SectionName/SectionName";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
 const PopularClass = () => {
-    // const [classes, setClass] = useState([])
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/classes')
-    //         .then(res => res.json())
-    //         .then(data => setClass(data))
-    // }, [])
     const [axiosSecure] = useAxiosSecure();
-
     const { data: data = [] } = useQuery({
         queryKey: ['popularClasses'],
         queryFn: async () => {

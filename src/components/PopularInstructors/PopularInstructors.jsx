@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
 import SectionName from '../SectionName/SectionName';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
 const PopularInstructors = () => {
     const [axiosSecure] = useAxiosSecure();
-
     const { data: data = [] } = useQuery({
         queryKey: ['popularInstructor'],
         queryFn: async () => {
