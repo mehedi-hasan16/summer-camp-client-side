@@ -29,7 +29,7 @@ const ClassesCard = ({ item }) => {
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Added to cart',
+                            title: 'Added to your Dashboard',
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -45,7 +45,7 @@ const ClassesCard = ({ item }) => {
                 })
         }else{
             Swal.fire({
-                title: 'Please Login for add to cart',
+                title: 'Please Login for Enroll',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

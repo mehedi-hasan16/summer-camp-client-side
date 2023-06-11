@@ -1,7 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import useUserRole from "../../../hooks/useUserRole";
-import { useEffect, useState } from "react";
-import useAuth from "../../../hooks/useAuth";
+
 
 
 
@@ -13,30 +12,30 @@ const Dashboard = () => {
         {
             role === 'admin'
                 ? (<>
-                    <Link to='/dashboard'><li><a> User info</a></li></Link>
-                    <Link to='/dashboard/allusers'><li><a> admin All User</a></li></Link>
-                    <Link to='/dashboard/manageClass'><li><a>admin Manage Class</a></li></Link>
+                    <li><Link to='/dashboard'>User info</Link></li>
+                    <li><Link to='/dashboard/allusers'> admin All User</Link></li><Link to='/dashboard/allusers'> admin All User</Link>
+                    <li><Link to='/dashboard/manageClass'>admin Manage Class</Link></li>
                 </>)
                 : role === 'instructor'
                     ? (<>
-                        <Link to='/dashboard'><li><a>User info</a></li></Link>
-                        <Link to='/dashboard/addclass'><li><a>instructor Add class</a></li></Link>
-                        <Link to='/dashboard/instructorClass'><li><a>Instructor my Class</a></li></Link>
+                        <li><Link to='/dashboard'>User info</Link></li>
+                        <li><Link to='/dashboard/addclass'>instructor Add class</Link></li>
+                        <li><Link to='/dashboard/instructorClass'>Instructor my Class</Link></li>
                     </>)
                     :
                     (<>
-                        <Link to='/dashboard'><li><a>User info</a></li></Link>
-                        <Link to='/dashboard/selectedClass'><li><a>student Selected class</a></li></Link>
-                        <Link to='/dashboard/enrolledClasses'><li><a>student Enrolled Classes</a></li></Link>
-                        <Link to='/dashboard/paymentHistory'><li><a>student Payment History</a></li></Link>
+                        <li><Link to='/dashboard'>User info</Link></li>
+                        <li><Link to='/dashboard/selectedClass'>student Selected class</Link></li>
+                        <li><Link to='/dashboard/enrolledClasses'>student Enrolled Classes</Link></li>
+                        <li><Link to='/dashboard/paymentHistory'>student Payment History</Link></li>
                     </>)
         }
-            {/* <Link to='/dashboard/allusers'><li><a> admin All User</a></li></Link>
-            <Link to='/dashboard/manageClass'><li><a>admin Manage Class</a></li></Link>
-            <Link to='/dashboard/selectedClass'><li><a>student Selected class</a></li></Link>
-            <Link to='/dashboard/enrolledClasses'><li><a>student Enrolled Classes</a></li></Link>
-            <Link to='/dashboard/addclass'><li><a>instructor Add class</a></li></Link>
-            <Link to='/dashboard/instructorClass'><li><a>Instructor my Class</a></li></Link> */}
+            {/* <Link to='/dashboard/allusers'> admin All User</Link>
+            <Link to='/dashboard/manageClass'>admin Manage Class</Link>
+            <Link to='/dashboard/selectedClass'>student Selected class</Link>
+            <Link to='/dashboard/enrolledClasses'>student Enrolled Classes</Link>
+            <Link to='/dashboard/addclass'>instructor Add class</Link>
+            <Link to='/dashboard/instructorClass'>Instructor my Class</Link> */}
         </>
     return (
         <div>
