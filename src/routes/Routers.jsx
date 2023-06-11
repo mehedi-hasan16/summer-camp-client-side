@@ -15,6 +15,9 @@ import ManageClass from "../components/page/Dashboard/ManageClass/ManageClass";
 import EnrolledClasses from "../components/page/Dashboard/EnrolledClasses/EnrolledClasses";
 import Payment from "../components/page/Dashboard/Payment/Payment";
 import PaymentHistory from "../components/page/Dashboard/PaymentHistory/PaymentHistory";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import UserInfo from "../components/page/UserInfo/UserInfo";
 
 
 const router = createBrowserRouter([
@@ -44,39 +47,43 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard',
-                element: <Dashboard></Dashboard>,
+                element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
                 children: [
                     {
+                        path: '',
+                        element: <PrivateRoute><UserInfo></UserInfo></PrivateRoute>
+                    },
+                    {
                         path: 'allusers',
-                        element: <AllUser></AllUser>
+                        element: <AdminRoute><AllUser></AllUser></AdminRoute>
                     },
                     {
                         path: 'selectedClass',
-                        element: <SelectedClasses></SelectedClasses>
+                        element: <PrivateRoute><SelectedClasses></SelectedClasses></PrivateRoute>
                     },
                     {
                         path: 'addclass',
-                        element: <AddClass></AddClass>
+                        element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
                     },
                     {
                         path: 'instructorClass',
-                        element: <InstructorClass></InstructorClass>
+                        element: <InstructorRoute><InstructorClass></InstructorClass></InstructorRoute>
                     },
                     {
                         path: 'manageClass',
-                        element: <ManageClass></ManageClass>
+                        element: <AdminRoute><ManageClass></ManageClass></AdminRoute>
                     },
                     {
                         path: 'enrolledClasses',
-                        element: <EnrolledClasses></EnrolledClasses>
+                        element: <PrivateRoute><EnrolledClasses></EnrolledClasses></PrivateRoute>
                     },
                     {
                         path: 'payment',
-                        element: <Payment></Payment>
+                        element: <PrivateRoute><Payment></Payment></PrivateRoute>
                     },
                     {
                         path: 'paymentHistory',
-                        element: <PaymentHistory></PaymentHistory>
+                        element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
                     }
                 ]
             }

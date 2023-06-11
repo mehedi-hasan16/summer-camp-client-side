@@ -16,7 +16,7 @@ const PopularInstructors = () => {
     return (
         <div>
             <SectionName title='Popular Instructors'></SectionName>
-            <div className='grid grid-cols-3 gap-4 mb-16'>
+            <div className='md:grid grid-cols-3 gap-4 mb-16'>
                 {
                     data.map(item => <div key={item._id}>
 

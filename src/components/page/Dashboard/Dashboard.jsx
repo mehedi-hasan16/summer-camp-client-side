@@ -13,16 +13,19 @@ const Dashboard = () => {
         {
             role === 'admin'
                 ? (<>
+                    <Link to='/dashboard'><li><a> User info</a></li></Link>
                     <Link to='/dashboard/allusers'><li><a> admin All User</a></li></Link>
                     <Link to='/dashboard/manageClass'><li><a>admin Manage Class</a></li></Link>
                 </>)
                 : role === 'instructor'
                     ? (<>
+                        <Link to='/dashboard'><li><a>User info</a></li></Link>
                         <Link to='/dashboard/addclass'><li><a>instructor Add class</a></li></Link>
                         <Link to='/dashboard/instructorClass'><li><a>Instructor my Class</a></li></Link>
                     </>)
                     :
                     (<>
+                        <Link to='/dashboard'><li><a>User info</a></li></Link>
                         <Link to='/dashboard/selectedClass'><li><a>student Selected class</a></li></Link>
                         <Link to='/dashboard/enrolledClasses'><li><a>student Enrolled Classes</a></li></Link>
                         <Link to='/dashboard/paymentHistory'><li><a>student Payment History</a></li></Link>
@@ -39,7 +42,7 @@ const Dashboard = () => {
         <div>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content flex flex-col items-center">
                     <Outlet></Outlet>
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
