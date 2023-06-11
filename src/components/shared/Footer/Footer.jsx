@@ -6,7 +6,7 @@ const Footer = () => {
                 <div>
                     <img src={logo} alt="" className='w-24' />
                     <p className="font-bold">
-                        ACME Industries Ltd. <br />Providing reliable tech since 1992
+                        Mehedi Hasan Ltd. <br />Providing reliable tech since 1992
                     </p>
                     <p>Copyright © 2023 - All right reserved</p>
                 </div>
@@ -18,7 +18,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div>
-                    <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+                    <p>Copyright © 2023 - All right reserved by Mehedi Hasan</p>
                 </div>
             </footer>
            

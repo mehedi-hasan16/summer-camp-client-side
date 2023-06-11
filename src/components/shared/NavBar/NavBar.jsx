@@ -17,18 +17,24 @@ const NavBar = () => {
                     ?
                     <>
                         <Link to='/dashboard'><li><a>Dashboard</a></li></Link>
-                        <img src={user?.photoURL} alt="" className='w-8' />
+                        <div className="tooltip tooltip-right" data-tip={user?.displayName}>
+                        <div className="avatar">
+                            <div className="w-10 rounded-full">
+                                <img src={user?.photoURL} />
+                            </div>
+                        </div>
+                        </div>
+                        
                     </>
                     : ''
             }
-            <li><a>{cart.length || 0}</a></li>
         </>
 
 
     const handleSignOut = () => {
         LogOut()
-        .then(() => { })
-        .catch(error => console.log(error.message))
+            .then(() => { })
+            .catch(error => console.log(error.message))
 
     }
 
