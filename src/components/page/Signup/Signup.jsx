@@ -3,6 +3,7 @@ import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 const Signup = () => {
     const [axiosSecure] = useAxiosSecure();
     const { register, getValues, handleSubmit, reset, formState: { errors } } = useForm();
@@ -94,6 +95,7 @@ const Signup = () => {
                     <div className='text-center mt-3'>Already have an account? <Link to='/login'>Login</Link></div>
                 </div>
             </form>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };

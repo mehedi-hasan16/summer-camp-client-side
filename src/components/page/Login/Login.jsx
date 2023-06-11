@@ -3,33 +3,34 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../shared/SocialLogin/SocialLogin';
 
 const Login = () => {
-    const[error, setError]= useState('')
-    const {signIn} = useAuth();
+    const [error, setError] = useState('')
+    const { signIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const formPage = location.state?.form?.pathname|| '/'
+    const formPage = location.state?.form?.pathname || '/'
     const [showPass, setShowPass] = useState(true)
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         setError('');
         signIn(data.email, data.password)
-            .then(result=>{
+            .then(result => {
                 console.log(result.user);
-            //    sweetalert 
+                //    sweetalert 
                 Swal.fire(
                     'Success',
                     'Login successfully',
                     'success'
-                  )
-                  navigate(formPage, {replace: true})
-            }).catch(error=>{
+                )
+                navigate(formPage, { replace: true })
+            }).catch(error => {
                 setError(error.message)
             })
 
     };
-   
+
     return (
         <div className='min-h-screen'>
             <div className='border-2 border-solid md:w-1/4 mx-auto p-4'>
@@ -61,6 +62,7 @@ const Login = () => {
                 </form>
                 <div className='text-center mt-3'>New in website? <Link to='/signup'>Register</Link></div>
                 <span className='text-red-500 text-center'>{error}</span>
+                <SocialLogin></SocialLogin>
             </div>
         </div>
     );
