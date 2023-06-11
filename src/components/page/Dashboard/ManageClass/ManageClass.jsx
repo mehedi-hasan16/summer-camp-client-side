@@ -14,6 +14,7 @@ const ManageClass = () => {
     //         .then(data => setData(data))
     // }, [user])
     const [classes, refetch]= useManageClass();
+    console.log(classes);
 const [axiosSecure]= useAxiosSecure();
     const handleDenied = item => {
         console.log(item);
