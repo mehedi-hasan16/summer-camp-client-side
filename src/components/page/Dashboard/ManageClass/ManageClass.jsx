@@ -1,23 +1,13 @@
-import { useEffect, useState } from "react";
-import useAuth from "../../../../hooks/useAuth";
 import SectionName from "../../../SectionName/SectionName";
 import Swal from "sweetalert2";
 import useManageClass from "../../../../hooks/useManageClass";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const ManageClass = () => {
-    // const [data, setData] = useState([])
-    // const { user } = useAuth();
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/classes`)
-    //         .then(res => res.json())
-    //         .then(data => setData(data))
-    // }, [user])
     const [classes, refetch]= useManageClass();
-    console.log(classes);
+
 const [axiosSecure]= useAxiosSecure();
     const handleDenied = item => {
-        console.log(item);
         Swal.fire({
             title: 'Write feedback why denied?',
             input: 'text',
@@ -43,29 +33,6 @@ const [axiosSecure]= useAxiosSecure();
                         })
                     }
                 })
-                // fetch(`http://localhost:5000/classes/${item._id}`, {
-                //     method: 'PATCH',
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     },
-                //     body: JSON.stringify({
-                //         status: 'denied',
-                //         comment: comment
-                //     })
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         if (data.modifiedCount > 0) {
-                //             refetch();
-                //             Swal.fire({
-                //                 position: 'top-end',
-                //                 icon: 'success',
-                //                 title: 'succesfully updated',
-                //                 showConfirmButton: false,
-                //                 timer: 1500
-                //             })
-                //         }
-                //     })
             }
         })
     }
@@ -84,28 +51,6 @@ const [axiosSecure]= useAxiosSecure();
                 })
             }
         })
-        // fetch(`http://localhost:5000/classes/${item._id}`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         status: 'approve',
-        //     })
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.modifiedCount > 0) {
-        //             refetch();
-        //             Swal.fire({
-        //                 position: 'top-end',
-        //                 icon: 'success',
-        //                 title: 'Approved succesfully',
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             })
-        //         }
-        //     })
     }
     return (
         <div className="w-full ms-10">

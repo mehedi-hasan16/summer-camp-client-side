@@ -2,8 +2,10 @@ import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useCart from "../../../hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const ClassesCard = ({ item }) => {
+    const [axiosSecure]= useAxiosSecure();
     const { _id, className, image, instructor, seats, price } = item;
     const { user } = useAuth();
     const [, refetch] = useCart();
@@ -15,34 +17,29 @@ const ClassesCard = ({ item }) => {
 
         if (user && user.email) {
             const orderItem = { courseId: _id, className, image, instructor, price, email: user.email }
-            fetch('http://localhost:5000/cart', {
-                method: 'post',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(orderItem)
+            
+            axiosSecure.post('/cart', orderItem)
+            .then(data => {
+                if (data.data.insertedId) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Added to your Dashboard',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                } else if( data.data.message){
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title:'Already added before',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.insertedId) {
-                        refetch();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Added to your Dashboard',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    } else if( data.message){
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'error',
-                            title:'Already added before',
-                            showConfirmButton: false,
-                            timer: 1500
-                        })
-                    }
-                })
+          
         }else{
             Swal.fire({
                 title: 'Please Login for Enroll',

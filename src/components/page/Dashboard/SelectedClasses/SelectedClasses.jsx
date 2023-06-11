@@ -2,27 +2,27 @@ import Swal from "sweetalert2";
 import useCart from "../../../../hooks/useCart";
 import SectionName from "../../../SectionName/SectionName";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const SelectedClasses = () => {
+    const [axiosSecure]= useAxiosSecure();
     const [cart, refetch] = useCart();
-    const totalPrice = cart.reduce((sum, item) => item.price + sum, 0);
+
     const handleRemoveCart = item => {
-        fetch(`http://localhost:5000/cart/${item._id}`, {
-            method: 'delete'
+        
+        axiosSecure.delete(`/cart/${item._id}`)
+        .then(data => {
+            if (data.data.deletedCount > 0) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Deleted succesfully!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+            refetch();
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Deleted succesfully!',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-                refetch();
-            })
     }
     return (
         <div className="w-full ms-10">

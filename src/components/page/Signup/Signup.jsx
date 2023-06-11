@@ -2,7 +2,9 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { Link, useNavigate } from 'react-router-dom';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 const Signup = () => {
+    const [axiosSecure] = useAxiosSecure();
     const { register, getValues, handleSubmit, reset, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useAuth();
     const navigate = useNavigate();
@@ -16,15 +18,9 @@ const Signup = () => {
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
 
-                        const saveUser = { name: data.name, email: data.email, image: data.photo, role:'student' }
-                        fetch('http://localhost:5000/users', {
-                            method: 'post',
-                            headers: {
-                                'content-type': 'application/json'
-                            },
-                            body: JSON.stringify(saveUser)
-                        })
-                            .then(res => res.json())
+                        const saveUser = { name: data.name, email: data.email, image: data.photo, role: 'student' }
+
+                        axiosSecure.post('/users', saveUser)
                             .then(data => {
                                 if (data.insertedId) {
                                     reset();
@@ -37,11 +33,10 @@ const Signup = () => {
                                     })
                                 }
                             })
-                       
                         navigate('/');
 
                     })
-            }).catch(error=>{
+            }).catch(error => {
                 Swal.fire(`${error.message}`)
                 // console.log(error.message);
             })

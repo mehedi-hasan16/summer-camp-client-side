@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import SectionName from "../../../SectionName/SectionName";
-import { useState } from "react";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 
 const AllUser = () => {
+    const [axiosSecure]= useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
         const res = await fetch('http://localhost:5000/users')
         return res.json();
@@ -21,39 +22,29 @@ const AllUser = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${user._id}`, {
-                    method: 'delete'
+                axiosSecure.delete(`/users/${user._id}`)
+                .then(data => {
+                    if (data.data.deletedCount > 0) {
+                        refetch();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
                 })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.deletedCount > 0) {
-                            refetch();
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-                        }
-                    })
             }
         })
     }
     const handleMakeAdmin = (user, role) => {
 
-        fetch(`http://localhost:5000/users/${user._id}/role`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ role }),
+        axiosSecure.patch(`/users/${user._id}/role`,{role})
+        .then(data => {
+            if (data.data.modifiedCount) {
+                refetch();
+                Swal.fire(`${user.name} status updated`)
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount) {
-                    refetch();
-                    Swal.fire(`${user.name} status updated`)
-                }
-            })
     }
     return (
         <div className="w-full ms-10 mb-10">

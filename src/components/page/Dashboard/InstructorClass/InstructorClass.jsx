@@ -1,17 +1,9 @@
-import { useEffect, useState } from "react";
-import useAuth from "../../../../hooks/useAuth";
 import SectionName from "../../../SectionName/SectionName";
 import useManageClass from "../../../../hooks/useManageClass";
 
 const InstructorClass = () => {
-    // const [data, setData] = useState([])
-    // const { user } = useAuth();
-    // useEffect(() => {
-    //     fetch(`http://localhost:5000/classes?email=${user?.email}`)
-    //         .then(res => res.json())
-    //         .then(data => setData(data))
-    // }, [user])
-    const [classes, refetch] = useManageClass(true);
+
+    const [classes] = useManageClass(true);
     return (
         <div>
             <div className="w-full ms-10 mb-10">

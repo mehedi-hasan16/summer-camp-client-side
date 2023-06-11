@@ -39,25 +39,6 @@ const AddClass = () => {
                                 })
                             }
                         })
-                    // fetch('http://localhost:5000/classes',{
-                    //     method:'post',
-                    //     headers:{
-                    //         'content-type': 'application/json'
-                    //     },
-                    //     body:JSON.stringify(addItem)
-                    // })
-                    // .then(res=>res.json())
-                    // .then(data=>{
-                    //     if(data.insertedId){
-                    //         Swal.fire({
-                    //             position: 'top-end',
-                    //             icon: 'success',
-                    //             title: 'Class added successfully!',
-                    //             showConfirmButton: false,
-                    //             timer: 1500
-                    //           })
-                    //     }
-                    // })
 
                 }
             })
