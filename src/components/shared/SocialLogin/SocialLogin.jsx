@@ -24,7 +24,7 @@ const SocialLogin = () => {
                 'success'
             )
             const saveUser = { name: loggedUser.displayName, email: loggedUser.email, image: loggedUser.photoURL, role: 'student' }
-            axios.post('http://localhost:5000/users', saveUser)
+            axios.post('https://language-quest-camp-server.vercel.app/users', saveUser)
             .then(data=>{
                 console.log(data.data);
                 navigate(formPage, { replace: true });

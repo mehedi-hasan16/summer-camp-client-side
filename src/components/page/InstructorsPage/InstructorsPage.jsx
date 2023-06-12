@@ -5,7 +5,7 @@ import SectionName from "../../SectionName/SectionName";
 const InstructorsPage = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/users/instructor')
+        fetch('https://language-quest-camp-server.vercel.app/users/instructor')
             .then(res => res.json())
             .then(data => setData(data))
     }, [])

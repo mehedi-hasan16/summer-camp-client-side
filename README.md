@@ -1,6 +1,6 @@
 # b712-summer-camp-client-side-mehedi-hasan16
 
-live site link : 
+live site link : https://simple-firebase-f0a93.web.app
 
 ### Website name: Language Quest Camp 
 
@@ -16,3 +16,4 @@ live site link :
 - react-icon, react-hook-form, react-router-dom, swiper, sweetalert, momentjs, framer-motion
 - axios, tanstack-query
 - stripe payment 
+- server side: express, mongodb, dotenv, jsonwebtoken
