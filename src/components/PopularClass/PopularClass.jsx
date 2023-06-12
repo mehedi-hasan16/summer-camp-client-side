@@ -22,7 +22,7 @@ const PopularClass = () => {
                     data.map(item => <motion.div whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }} key={item._id}>
                         <div className="card md:w-96 bg-base-100 shadow-xl">
-                            <figure><img src={item.image} alt="image" /></figure>
+                            <figure><img src={item.image} alt="image" className="w-full h-60 object-cover" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{item.className}</h2>
                                 <p>Instructor: {item.instructor}</p>

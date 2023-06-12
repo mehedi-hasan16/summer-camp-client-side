@@ -61,7 +61,7 @@ const ClassesCard = ({ item }) => {
         <div>
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className={`${seats ===0?'card w-96 bg-red-500 shadow-xl':'card w-96 bg-base-100 shadow-xl'}`}>
                 <figure className="px-10 pt-10">
-                    <img src={image} alt="Shoes" className="rounded-xl" />
+                    <img src={image} alt="image" className="rounded-xl w-full h-60 object-cover" />
                 </figure>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title">{className}</h2>

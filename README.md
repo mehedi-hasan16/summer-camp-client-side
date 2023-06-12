@@ -15,3 +15,4 @@ live site link :
 - React, Tailwind CSS, daisyUI
 - react-icon, react-hook-form, react-router-dom, swiper, sweetalert, momentjs, framer-motion
 - axios, tanstack-query
+- stripe payment 

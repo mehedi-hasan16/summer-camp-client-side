@@ -7,7 +7,6 @@ import { FaBook, FaBookMedical, FaBookReader, FaFileInvoiceDollar, FaPlusSquare,
 
 const Dashboard = () => {
     const[role] = useUserRole();
-    console.log(role);
     const item =
         <>
         {

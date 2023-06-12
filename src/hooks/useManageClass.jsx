@@ -11,12 +11,10 @@ const useManageClass = (email) => {
         queryFn: async ()=>{
             if(email){
                 const res = await axiosSecure.get(`/classes/${user?.email}`)
-                console.log('from manage class hook',res);
                return res.data;
             }
             else{
                 const res = await axiosSecure.get(`/classes`)
-                console.log(res);
                return res.data;
             }
         },

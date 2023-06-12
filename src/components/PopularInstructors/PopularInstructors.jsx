@@ -9,7 +9,6 @@ const PopularInstructors = () => {
         queryKey: ['popularInstructor'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users/limitInstructor/6');
-            console.log(res);
             return res.data;
         }
     })
@@ -22,7 +21,7 @@ const PopularInstructors = () => {
                         whileTap={{ scale: 0.9 }} key={item._id}>
 
                         <div className="card card-compact md:w-96 bg-base-100 shadow-xl">
-                            <figure><img src={item.image} alt="image" /></figure>
+                            <figure><img src={item.image} alt="image" className="w-full h-48 object-cover" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{item.name}</h2>
                                 <p>Email: {item.email}</p>

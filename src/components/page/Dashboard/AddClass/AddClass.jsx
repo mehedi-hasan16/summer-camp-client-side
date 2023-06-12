@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const img_hosting_token = import.meta.env.VITE_IMAEGE_UPLOAD_TOKEN;
-console.log(img_hosting_token);
 const AddClass = () => {
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();

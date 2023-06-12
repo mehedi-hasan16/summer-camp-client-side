@@ -10,7 +10,8 @@ const AllUser = () => {
         const res = await axiosSecure.get('/users')
         return res.data;
     })
-    console.log(users);
+
+    
     const handleDelete = user => {
 
         Swal.fire({
