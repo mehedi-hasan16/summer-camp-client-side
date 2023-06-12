@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import SocialLogin from '../../shared/SocialLogin/SocialLogin';
+import SectionName from '../../SectionName/SectionName';
 
 const Login = () => {
     const [error, setError] = useState('')
@@ -33,6 +34,7 @@ const Login = () => {
 
     return (
         <div className='min-h-screen'>
+            <SectionName title='Login Here!'></SectionName>
             <div className='border-2 border-solid md:w-1/4 mx-auto p-4'>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -60,7 +62,7 @@ const Login = () => {
                     </div>
 
                 </form>
-                <div className='text-center mt-3'>New in website? <Link to='/signup'>Register</Link></div>
+                <div className='text-center mt-3'>New in website? <Link to='/signup'><span className='text-blue-600'>Register</span></Link></div>
                 <span className='text-red-500 text-center'>{error}</span>
                 <SocialLogin></SocialLogin>
             </div>

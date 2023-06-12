@@ -18,6 +18,7 @@ import PaymentHistory from "../components/page/Dashboard/PaymentHistory/PaymentH
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import UserInfo from "../components/page/UserInfo/UserInfo";
+import NotFound from "../components/page/NotFound/NotFound";
 
 
 const router = createBrowserRouter([
@@ -90,7 +91,12 @@ const router = createBrowserRouter([
         ]
 
 
+
     },
+    {
+        path:'*',
+        element:<NotFound></NotFound>
+    }
 ]);
 
 export default router;

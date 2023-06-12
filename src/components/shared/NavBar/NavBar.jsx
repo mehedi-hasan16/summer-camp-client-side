@@ -1,26 +1,23 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
 import useAuth from '../../../hooks/useAuth';
-import useCart from '../../../hooks/useCart';
 import { useEffect, useState } from 'react';
 const NavBar = () => {
-    const [theme, setTheme]= useState(localStorage.getItem('theme')? localStorage.getItem('theme'): 'light');
-    const handleToggle= event=>{
-        if(event.target.checked){
+    const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
+    const handleToggle = event => {
+        if (event.target.checked) {
             setTheme('dark');
-        }else{
+        } else {
             setTheme('light');
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem('theme', theme);
         const localTheme = localStorage.getItem('theme');
-         document.querySelector('html').setAttribute('data-theme', localTheme)
-    },[theme])
+        document.querySelector('html').setAttribute('data-theme', localTheme)
+    }, [theme])
     const { user, LogOut } = useAuth();
-    console.log(user);
-    const [cart] = useCart();
-    console.log(cart);
+
     const navItem =
         <>
             <li><Link to='/'>Home</Link></li>
@@ -64,8 +61,10 @@ const NavBar = () => {
                             {navItem}
                         </ul>
                     </div>
-                    <img src={logo} alt="" className='w-16' />
-                    <a className="text-3xl font-semibold">Language Quest Camp</a>
+                    <img src={logo} alt="" className='w-16'/>
+                    <Link to='/' >
+                        <a className="text-3xl font-semibold">Language Quest Camp</a>
+                    </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

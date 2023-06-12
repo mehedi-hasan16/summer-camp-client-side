@@ -9,7 +9,6 @@ const SelectedClasses = () => {
     const [cart, refetch] = useCart();
 
     const handleRemoveCart = item => {
-        
         axiosSecure.delete(`/cart/${item._id}`)
         .then(data => {
             if (data.data.deletedCount > 0) {

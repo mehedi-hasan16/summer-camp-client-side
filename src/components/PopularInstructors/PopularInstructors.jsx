@@ -8,7 +8,8 @@ const PopularInstructors = () => {
     const { data: data = [] } = useQuery({
         queryKey: ['popularInstructor'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/users/limitInstructor`);
+            const res = await axiosSecure.get('/users/limitInstructor/6');
+            console.log(res);
             return res.data;
         }
     })
